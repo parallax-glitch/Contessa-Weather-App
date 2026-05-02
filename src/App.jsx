@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Map from './components/Map'
 
 function DigitalClock() {
   const [time, setTime] = useState(new Date())
@@ -112,7 +113,9 @@ function App() {
         ...data.current,
         ...weatherInfo,
         location: location.name,
-        country: location.country
+        country: location.country,
+        lat: location.lat,
+        lon: location.lon
       })
     } catch (err) {
       setError(err.message)
