@@ -208,6 +208,9 @@ function App() {
             </div>
           </div>
         )}
+        <div className="mt-6">
+          <Map lat={weather.lat} lon={weather.lon} />
+        </div>
       </div>
     </div>
   )
