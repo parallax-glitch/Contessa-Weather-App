@@ -167,50 +167,52 @@ function App() {
         )}
 
         {weather && (
-          <div className="bg-slate-900/40 border-2 border-purple-600/30 p-6 font-mono">
-            <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b border-purple-600/20">
-              <div className="text-left border-r border-purple-600/20 pr-6">
-                <p className="text-purple-500 text-xs uppercase tracking-widest mb-1">LOCATION</p>
-                <p className="text-white text-xl font-light uppercase">{weather.location}, {weather.country}</p>
+          <>
+            <div className="bg-slate-900/40 border-2 border-purple-600/30 p-6 font-mono">
+              <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b border-purple-600/20">
+                <div className="text-left border-r border-purple-600/20 pr-6">
+                  <p className="text-purple-500 text-xs uppercase tracking-widest mb-1">LOCATION</p>
+                  <p className="text-white text-xl font-light uppercase">{weather.location}, {weather.country}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-purple-500 text-xs uppercase tracking-widest mb-1">STATUS</p>
+                  <p className="text-purple-200">{weather.description}</p>
+                </div>
               </div>
-              <div className="text-right">
-                <p className="text-purple-500 text-xs uppercase tracking-widest mb-1">STATUS</p>
-                <p className="text-purple-200">{weather.description}</p>
+              
+              <div className="flex justify-center mb-8">
+                <div className="relative inline-block">
+                  <span className="text-8xl">{weather.icon}</span>
+                  <div className="absolute -right-2 -bottom-2 bg-purple-600 text-white text-sm font-bold px-3 py-1 border-4 border-slate-800">
+                    {Math.round(weather.temperature_2m)}°C
+                  </div>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex justify-center mb-8">
-              <div className="relative inline-block">
-                <span className="text-8xl">{weather.icon}</span>
-                <div className="absolute -right-2 -bottom-2 bg-purple-600 text-white text-sm font-bold px-3 py-1 border-4 border-slate-800">
-                  {Math.round(weather.temperature_2m)}°C
+
+              <div className="grid grid-cols-2 gap-6 pt-4 border-t border-purple-600/20">
+                <div className="text-left">
+                  <p className="text-purple-500 text-xs uppercase tracking-widest">Feels Like</p>
+                  <p className="text-white text-2xl font-light">{Math.round(weather.apparent_temperature)}°</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-purple-500 text-xs uppercase tracking-widest">Humidity</p>
+                  <p className="text-white text-2xl font-light">{weather.relative_humidity_2m}%</p>
+                </div>
+                <div className="text-left">
+                  <p className="text-purple-500 text-xs uppercase tracking-widest">Wind Speed</p>
+                  <p className="text-white text-xl font-light">{Math.round(weather.wind_speed_10m)} km/h</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-purple-500 text-xs uppercase tracking-widest">Local Time</p>
+                  <p className="text-slate-300 font-mono text-sm">{weather.time}</p>
                 </div>
               </div>
             </div>
-
-            <div className="grid grid-cols-2 gap-6 pt-4 border-t border-purple-600/20">
-              <div className="text-left">
-                <p className="text-purple-500 text-xs uppercase tracking-widest">Feels Like</p>
-                <p className="text-white text-2xl font-light">{Math.round(weather.apparent_temperature)}°</p>
-              </div>
-              <div className="text-right">
-                <p className="text-purple-500 text-xs uppercase tracking-widest">Humidity</p>
-                <p className="text-white text-2xl font-light">{weather.relative_humidity_2m}%</p>
-              </div>
-              <div className="text-left">
-                <p className="text-purple-500 text-xs uppercase tracking-widest">Wind Speed</p>
-                <p className="text-white text-xl font-light">{Math.round(weather.wind_speed_10m)} km/h</p>
-              </div>
-              <div className="text-right">
-                <p className="text-purple-500 text-xs uppercase tracking-widest">Local Time</p>
-                <p className="text-slate-300 font-mono text-sm">{weather.time}</p>
-              </div>
+            <div className="mt-6">
+              <Map lat={weather.lat} lon={weather.lon} />
             </div>
-          </div>
+          </>
         )}
-        <div className="mt-6">
-          <Map lat={weather.lat} lon={weather.lon} />
-        </div>
       </div>
     </div>
   )
